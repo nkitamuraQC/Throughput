@@ -1,4 +1,4 @@
-# high_throughput_system
+# Throughput
 - Components
   - automatic-wannier-flow
   - cryspy
