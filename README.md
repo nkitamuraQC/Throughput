@@ -3,5 +3,5 @@
   - automatic-wannier-flow
   - cryspy
   - seek_parh
-  - Other our packages
+  - Evaluation
     - pbctools etc
