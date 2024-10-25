@@ -5,3 +5,4 @@
   - seek_parh
   - Evaluation
     - pbctools etc
+  - LatticeModel GCN
