@@ -2,7 +2,9 @@
 - Components
   - automatic-wannier-flow
   - cryspy
-  - seek_parh
-  - Evaluation
-    - pbctools etc
-  - LatticeModel GCN
+  - Others
+    - seek_parh
+  - Future
+    - Evaluation
+      - pbctools etc
+    - LatticeModel GCN
