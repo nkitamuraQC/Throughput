@@ -10,3 +10,4 @@
     - LatticeModel GCN
 #### TODO
 - awf: VASP-->QE
+- awf: VASP使用権限
