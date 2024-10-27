@@ -3,6 +3,7 @@
   - auto wannier
   - download cif
   - QuantumEspresso
+    - scf,dos,opt
   - Future
     - pbctools etc
     - LatticeModel GCN
