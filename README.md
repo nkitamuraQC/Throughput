@@ -1,17 +1,16 @@
 # Throughput
 - Components
-  - automatic-wannier-flow
-  - cryspy
-  - Others
-    - seek_parh
+  - auto wannier
+  - download cif
+  - QuantumEspresso
   - Future
-    - Evaluation
-      - pbctools etc
+    - pbctools etc
     - LatticeModel GCN
+    - seekpath
 #### TODO
 - awf: VASP-->QE
 - awf: VASP使用権限
-#### 自作auto-wannier-flow
+#### 自作auto-wannier
 - 手順(例:FeSe)
   - QEでscf計算
   - QEでdos計算
