@@ -19,5 +19,5 @@
     - FeSeの場合Feの3d軌道
     - TMTTFの場合Cの2p,Sの3p軌道
   - dosから重要軌道の密度が高いwindow作成
-    - 累積和と尺取り法
+    - 累積和と二分探索と線形探索
   - respackインプット作成してwannier計算
