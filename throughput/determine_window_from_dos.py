@@ -1,7 +1,7 @@
 from bisect import bisect_right
 import numpy as np
 
-def max_average_subarray_with_binary_search(A):
+def search_window(A):
     n = len(A)
     
     # 累積和の計算
