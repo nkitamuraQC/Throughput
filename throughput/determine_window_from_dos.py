@@ -58,12 +58,28 @@ def cumulative_sum(A):
     return S
 
 
-def read_dos(dosfile):
-    ### QE
-    return
+def read_dos(dosfile, choice1=2, choice2=5):
+    rf = open(dosfile, "r")
+    lines = rf.readlines()
+    e_ret = []
+    dos_ret = []
+    integral = 0.0
+    for i in range(1,len(lines)):
+        e = float(lines[i].split()[0]) - fermi
+        _ = lines[i].split()[1]
+        dos_ = lines[i].split()[choice1:choice2]
+        val = 0.0
+        for i in range(len(dos_)):
+            val += float(dos_[i])
+        tmp = []
+        if e > range_[0] and e < range_[1]:
+            e_ret.append(e)
+            dos_ret.append(val)
+    integral += sum(dos_ret)
+    return e_ret, dos_ret, integral
 
 def det_single_dos(dosfile):
-    dos, energy = read_dos(dosfile)
+    energy, dos = read_dos(dosfile)
     a, b = search_window(dos)
     start = energy[a]
     end = energy[b]
