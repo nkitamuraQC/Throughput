@@ -83,6 +83,16 @@ def det_single_dos(dosfile):
     a, b = search_window(dos)
     start = energy[a]
     end = energy[b]
+    start = convert_to_fortran_notation(start)
+    end = convert_to_fortran_notation(end)
     return start, end
+
+def convert_to_fortran_notation(num):
+    # 数値を浮動小数点での指数表現文字列に変換
+    sci_notation = f"{num:.1e}"
     
+    # 'e'を'd'に置き換えたFortran形式に変換
+    fortran_notation = sci_notation.replace('e', 'd')
+    
+    return fortran_notation
     
