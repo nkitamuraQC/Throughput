@@ -64,8 +64,7 @@ def read_dos(dosfile):
 
 def det_single_dos(dosfile):
     dos, energy = read_dos(dosfile)
-    cdos = cumulative_sum(dos)
-    a, b = max_average_subarray_with_binary_search(cdos)
+    a, b = search_window(dos)
     start = energy[a]
     end = energy[b]
     return start, end
