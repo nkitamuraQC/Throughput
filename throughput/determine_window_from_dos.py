@@ -79,7 +79,7 @@ def read_dos(dosfile, choice1=2, choice2=5):
     return e_ret, dos_ret, integral
 
 def det_single_dos(dosfile):
-    energy, dos = read_dos(dosfile)
+    energy, dos, _ = read_dos(dosfile)
     a, b = search_window(dos)
     start = energy[a]
     end = energy[b]
