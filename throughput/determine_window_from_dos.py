@@ -62,13 +62,13 @@ def read_dos(dosfile, target_start=2, target_end=7):
     integral += sum(dos_ret)
     return e_ret, dos_ret, integral
 
-def for_single_dos(dosfile):
-    energy, dos, _ = read_dos(dosfile)
+def for_single_dos(dosfile, target_start=2, target_end=7):
+    energy, dos, _ = read_dos(dosfile, target_start=target_start, target_end=target_end)
     a, b = search_window(dos)
     start = energy[a]
     end = energy[b]
-    start = convert_to_fortran_notation(start)
-    end = convert_to_fortran_notation(end)
+    #start = convert_to_fortran_notation(start)
+    #end = convert_to_fortran_notation(end)
     return start, end
 
 def convert_to_fortran_notation(num):
