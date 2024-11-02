@@ -44,7 +44,7 @@ def search_window(A):
     return idx, overall_max_j
 
 
-def read_dos(dosfile, target_start=2, target_end=7):
+def read_dos(dosfile, target):
     rf = open(dosfile, "r")
     lines = rf.readlines()
     e_ret = []
@@ -53,22 +53,26 @@ def read_dos(dosfile, target_start=2, target_end=7):
     for i in range(1,len(lines)):
         e = float(lines[i].split()[0])
         _ = lines[i].split()[1]
-        dos_ = lines[i].split()[target_start: target_end]
-        val = 0.0
-        for i in range(len(dos_)):
-            val += float(dos_[i])
+        dos = float(lines[i].split()[target])
         e_ret.append(e)
-        dos_ret.append(val)
+        dos_ret.append(dos)
     integral += sum(dos_ret)
     return e_ret, dos_ret, integral
 
-def for_single_dos(dosfile, target_start=2, target_end=7):
-    energy, dos, _ = read_dos(dosfile, target_start=target_start, target_end=target_end)
-    a, b = search_window(dos)
-    start = energy[a]
-    end = energy[b]
-    #start = convert_to_fortran_notation(start)
-    #end = convert_to_fortran_notation(end)
+def for_single_dos(dosfile, target_start=2, target_end=7, offset=3):
+    sta = []
+    end = []
+    for t in range(target_start, target_end):
+        energy, dos, _ = read_dos(dosfile, t)
+        a, b = search_window(dos)
+        sta.append(a)
+        end.append(b)
+    a = min(sta)
+    b = max(end)
+    start = energy[a] - offset
+    end = energy[b] + offset
+    print("start:", convert_to_fortran_notation(start))
+    print("end:", convert_to_fortran_notation(end))
     return start, end
 
 def convert_to_fortran_notation(num):
