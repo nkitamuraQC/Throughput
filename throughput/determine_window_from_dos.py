@@ -16,19 +16,19 @@ def read_dos(dosfile, target):
     integral += sum(dos_ret)
     return e_ret, dos_ret, integral
 
-def for_single_dos(dosfile, target_start=2, target_end=7, offset=3):
+def for_single_dos(dosfile, target_start=2, target_end=7, offset=3, thr=0.01):
     sta = []
     end = []
     for t in range(target_start, target_end):
         energy, dos, _ = read_dos(dosfile, t)
-        e = energy[np.argmax(dos)]
+        e = energy[np.where(dos > thr)]
         # a, b = search_window(dos)
-        sta.append(e-offset)
-        end.append(e+offset)
+        sta.append(np.min(e))
+        end.append(np.max(e))
     a = min(sta)
     b = max(end)
-    start = energy[a]
-    end = energy[b]
+    start = energy[a] - offset
+    end = energy[b] + offset
     print("start:", convert_to_fortran_notation(start))
     print("end:", convert_to_fortran_notation(end))
     return start, end
