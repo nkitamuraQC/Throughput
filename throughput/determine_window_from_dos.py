@@ -64,9 +64,10 @@ def for_single_dos(dosfile, target_start=2, target_end=7, offset=3):
     end = []
     for t in range(target_start, target_end):
         energy, dos, _ = read_dos(dosfile, t)
-        a, b = search_window(dos)
-        sta.append(a)
-        end.append(b)
+        e = energy[np.argmax(dos)]
+        # a, b = search_window(dos)
+        sta.append(e-offset)
+        end.append(e+offset)
     a = min(sta)
     b = max(end)
     start = energy[a] - offset
