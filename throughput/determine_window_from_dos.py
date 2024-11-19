@@ -16,7 +16,7 @@ def read_dos(dosfile, target):
     integral += sum(dos_ret)
     return e_ret, dos_ret, integral
 
-def for_single_dos(dosfile, target_start=2, target_end=7, offset=3, thr=0.01):
+def for_single_dos(dosfile, target_start=2, target_end=7, offset=3, thr=0.1):
     sta = []
     end = []
     for t in range(target_start, target_end):
