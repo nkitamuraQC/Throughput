@@ -21,14 +21,16 @@ def for_single_dos(dosfile, target_start=2, target_end=7, offset=3, thr=0.1):
     end = []
     for t in range(target_start, target_end):
         energy, dos, _ = read_dos(dosfile, t)
+        dos = np.array(dos)
+        energy = np.array(energy)
         e = energy[np.where(dos > thr)]
         # a, b = search_window(dos)
         sta.append(np.min(e))
         end.append(np.max(e))
     a = min(sta)
     b = max(end)
-    start = energy[a] - offset
-    end = energy[b] + offset
+    start = a - offset
+    end = b + offset
     print("start:", convert_to_fortran_notation(start))
     print("end:", convert_to_fortran_notation(end))
     return start, end
@@ -49,7 +51,7 @@ def convert_to_fortran_notation(num):
     return fortran_notation
 
 if __name__ == "__main__":
-    fdos = "throughput/calculation.pdos_atm#1(Fe)_wfc#4(d)"
+    fdos = "throughput/examples/calculation.pdos_atm#1(Fe)_wfc#4(d)"
 
     start, end = for_single_dos(fdos)
-    print(start, end)
+    print(convert_to_fortran_notation(start), convert_to_fortran_notation(end))
