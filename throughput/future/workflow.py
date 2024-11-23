@@ -2,8 +2,12 @@ from pylat.crystal_lattice import SpaceGroupSupplement
 from pylat.lattice_model import LatticeModel_gen
 from pylat.qe_controller import QEController
 from pylat.respack import RESPACKController
-from throughput.determine_window_from_dos import for_single_dos, convert_to_fortran_notation
+from throughput.determine_window_from_dos import (
+    for_single_dos,
+    convert_to_fortran_notation,
+)
 import os
+
 
 def get_window(qe, target_wan):
     pdos_prefix = qe.prefix + ".pdos_atm"
@@ -20,12 +24,15 @@ def get_window(qe, target_wan):
                     if v == "p":
                         target_start = 2
                         target_end = 5
-                    s, e = for_single_dos(fname, target_start=target_start, target_end=target_end)
+                    s, e = for_single_dos(
+                        fname, target_start=target_start, target_end=target_end
+                    )
                     starts.append(s)
                     ends.append(e)
     start = convert_to_fortran_notation(min(starts))
     end = convert_to_fortran_notation(max(ends))
     return start, end
+
 
 def get_initial_guess(qe, target_wan, gauss=0.2):
     o_dic = {"d": ["dxy", "dyz", "dzx", "dz2", "dx2"], "p": ["px", "py", "pz"]}
@@ -38,6 +45,7 @@ def get_initial_guess(qe, target_wan, gauss=0.2):
         init_guess += tmp
     return init_guess
 
+
 def get_n_wannier(qe, target_wan):
     n_dic = {"d": 5, "p": 3}
     n_wannier = 0
@@ -45,6 +53,7 @@ def get_n_wannier(qe, target_wan):
         if at[0] in target_wan:
             n_wannier += n_dic[target_wan[at[0]].lower()]
     return n_wannier
+
 
 def main(cifname, pseudo_dict, target_wan):
     qe = QEController(cifname, pseudo_dict)
@@ -69,8 +78,12 @@ def main(cifname, pseudo_dict, target_wan):
     res.execusion()
     return
 
+
 if __name__ == "__main__":
     cif = ""
-    pseudo_dict = {"Fe":"Fe.pbe-spn-kjpaw_psl.1.0.0.UPF", "Se":"Se.pbe-dn-kjpaw_psl.1.0.0.UPF"}
-    target_wan = {"Fe":"d"}
+    pseudo_dict = {
+        "Fe": "Fe.pbe-spn-kjpaw_psl.1.0.0.UPF",
+        "Se": "Se.pbe-dn-kjpaw_psl.1.0.0.UPF",
+    }
+    target_wan = {"Fe": "d"}
     main(cif, pseudo_dict, target_wan)
