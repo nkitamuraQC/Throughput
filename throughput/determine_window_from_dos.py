@@ -16,7 +16,7 @@ def read_dos(dosfile, target):
     integral += sum(dos_ret)
     return e_ret, dos_ret, integral
 
-def for_single_dos(dosfile, target_start=2, target_end=7, offset=3, thr=0.1):
+def for_single_dos(dosfile, target_start=2, target_end=7, offset=0.5, thr=0.1):
     sta = []
     end = []
     for t in range(target_start, target_end):
@@ -37,7 +37,7 @@ def for_single_dos(dosfile, target_start=2, target_end=7, offset=3, thr=0.1):
 
 def convert_to_fortran_notation(num):
     # 数値を浮動小数点での指数表現文字列に変換
-    sci_notation = f"{num:.1e}"
+    sci_notation = f"{num:.4e}"
     
     # 'e'を'd'に置き換えたFortran形式に変換
     fortran_notation = sci_notation.replace('e', 'd')
